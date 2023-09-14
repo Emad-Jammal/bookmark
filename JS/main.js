@@ -96,7 +96,7 @@ function validateURL(){
   var regex = /^(https:\/\/)?(www\.)?[A-Za-z0-9_\.]{1,}\.[a-z]{3}$/
   regex.test(siteURL.value);
   if (regex.test(siteURL.value) == true){
-    siteURL.style.border= '5px solid green';
+    siteURL.style.border.color= '5px solid green';
     return true;
   }else {
     siteURL.style.border= '5px solid red';
