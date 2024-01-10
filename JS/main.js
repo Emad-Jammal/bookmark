@@ -1,5 +1,7 @@
 let siteName = document.querySelector("#siteName");
 let siteURL = document.querySelector("#siteURL");
+let submit = document.querySelector("#submit");
+
 
 let sites ;
 if(localStorage.getItem("sites") == null){
@@ -8,6 +10,14 @@ if(localStorage.getItem("sites") == null){
   sites = JSON.parse(localStorage.getItem("sites"));
   display(sites);
 }
+
+
+submit.addEventListener("click",function () {
+  addSite();
+}
+
+)
+
 function addSite() {
   if (validateName() == true){
   let site = {
@@ -17,7 +27,6 @@ function addSite() {
   validateName();
   sites.push(site);
   display(sites);
-  clearForm();
   localStorage.setItem("sites",JSON.stringify(sites));
 }else {
   document.getElementById("alert").classList.remove("d-none");
@@ -35,22 +44,16 @@ if (validateURL() == true){
   validateURL();
   sites.push(site);
   display(sites);
-  clearForm();
   localStorage.setItem("sites",JSON.stringify(sites));
 }else {
   document.getElementById("alert").classList.remove("d-none");
   document.getElementById("close").addEventListener("click",function() {
     closeAlert();
   })
-
+  
 }
+clearForm();
 }
-let submit = document.querySelector("button");
-submit.addEventListener("click",function () {
-  addSite();
-}
-
-)
 
 function display(sitesArr) {
   let siteRow = '';
@@ -58,11 +61,13 @@ function display(sitesArr) {
     siteRow += `<tr>
     <td>${i + 1}</td>
     <td>${sitesArr[i].name}</td>
-    <td><a href="" class="btn btn-success"><i class="fa-solid fa-eye"></i> Visit</a></td>
+    <td><a href="https://${siteURL.value}" target='_blank' class="btn btn-success"><i class="fa-solid fa-eye"></i> Visit</a></td>
     <td><button id="delete" onclick="deleteSite(${i})" class="btn btn-danger">Delete</button></td>
   </tr>`
   }
   document.querySelector("#tbody").innerHTML = siteRow;
+  // clearForm();
+
 }
 
 function clearForm(){
@@ -80,10 +85,10 @@ function validateName() {
   let regex = /^[A-Za-z]{3,}$/;
   regex.test(siteName.value);
   if (regex.test(siteName.value) == true) {
-    siteName.style.border= '5px solid green';
+    siteName.style.border= '2px solid green';
     return true;
   } else {
-    siteName.style.border= '5px solid red';
+    siteName.style.border= '2px solid red';
     return false
   }
 
@@ -93,13 +98,13 @@ function closeAlert() {
 }
 
 function validateURL(){
-  var regex = /^(https:\/\/)?(www\.)?[A-Za-z0-9_\.]{1,}\.[a-z]{3}$/
+  var regex = /^[A-Za-z0-9]{1,}\.[a-z]{2,4}$/
   regex.test(siteURL.value);
   if (regex.test(siteURL.value) == true){
-    siteURL.style.border.color= '5px solid green';
+    siteURL.style.border = '2px solid green';
     return true;
   }else {
-    siteURL.style.border= '5px solid red';
+    siteURL.style.border = '2px solid red';
     return false;
   }
 }
