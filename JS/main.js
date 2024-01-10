@@ -49,7 +49,7 @@ function display(sitesArr) {
   for (var i = 0; i < sitesArr.length; i++){
     siteRow += `<tr>
     <td>${i + 1}</td>
-    <td>${sitesArr[i].name}</td>
+    <td>${sitesArr[i].newName ? sitesArr[i].newName : sitesArr[i].name}</td>
     <td>
     <div class='position-relative'>
     <a href="https://${sitesArr[i].URL}" target='_blank' class="btn btn-outline-success visit">
@@ -81,7 +81,8 @@ search.addEventListener('keyup', function () {
   for (let i = 0; i < sites.length; i++) {
     const element = sites[i];
     if (element.name.toLowerCase().includes(this.value.toLowerCase())) {
-      afterSearch.push(element)  
+      afterSearch.push(element)
+      sites[i].newName = sites[i].name.toLowerCase().replace(this.value.toLowerCase(),`<span class="text-danger">${this.value}</span>`)
     }
     
   }
