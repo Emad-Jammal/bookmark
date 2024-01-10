@@ -33,15 +33,24 @@
       <label for="siteURL" class="mb-2 fw-bold text-start"><i class="fa-solid fa-link pe-2"></i> Site URL</label>
       <input type="url" oninput = "validateURL()" name="webSiteName" placeholder="Example: facebook.com" class="form-control mb-5" id="siteURL">
     </div>
-    <button class="btn btn-danger mx-auto" id="submit">Submit</button>
+    <button class="btn btn-success mx-auto" id="submit">Submit</button>
+    <button class="btn btn-warning mx-auto d-none" id="update">Update</button>
   </div>
 
-  <table class="table text-center">
+
+  
+  <table class="table text-center bg-light">
+    
+    <div class="mb-4 position-relative">
+      <i class="fa-solid search-icon fa-magnifying-glass position-absolute top-50 translate-middle-y text-primary"></i>
+      <input type="text" placeholder="Search sites" class="form-control ps-5" id="search">
+    </div>
     <thead>
       <tr>
         <td>Index</td>
         <td>Website Name</td>
         <td>Visit</td>
+        <td>Update</td>
         <td>Delete</td>
       </tr>
     </thead>

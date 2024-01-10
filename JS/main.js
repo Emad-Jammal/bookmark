@@ -1,9 +1,12 @@
 let siteName = document.querySelector("#siteName");
 let siteURL = document.querySelector("#siteURL");
 let submit = document.querySelector("#submit");
+let update = document.querySelector("#update");
+let search = document.querySelector("#search")
 
 
 let sites ;
+let indexOfSite;
 if(localStorage.getItem("sites") == null){
   sites = [];
 }else {
@@ -14,12 +17,14 @@ if(localStorage.getItem("sites") == null){
 
 submit.addEventListener("click",function () {
   addSite();
+  console.log(1);
 }
 
 )
 
 function addSite() {
-  if (validateName() == true){
+  console.log(1);
+  if (validateName() == true && validateURL() == true){
   let site = {
     name: siteName.value,
     URL: siteURL.value
@@ -35,23 +40,7 @@ function addSite() {
   })
 
 }
-if (validateURL() == true){
-  let site = {
-    name: siteName.value,
-    URL: siteURL.value
-  };
-  validateName();
-  validateURL();
-  sites.push(site);
-  display(sites);
-  localStorage.setItem("sites",JSON.stringify(sites));
-}else {
-  document.getElementById("alert").classList.remove("d-none");
-  document.getElementById("close").addEventListener("click",function() {
-    closeAlert();
-  })
-  
-}
+
 clearForm();
 }
 
@@ -61,18 +50,68 @@ function display(sitesArr) {
     siteRow += `<tr>
     <td>${i + 1}</td>
     <td>${sitesArr[i].name}</td>
-    <td><a href="https://${siteURL.value}" target='_blank' class="btn btn-success"><i class="fa-solid fa-eye"></i> Visit</a></td>
-    <td><button id="delete" onclick="deleteSite(${i})" class="btn btn-danger">Delete</button></td>
+    <td>
+    <div class='position-relative'>
+    <a href="https://${sitesArr[i].URL}" target='_blank' class="btn btn-outline-success visit">
+    <i class="fa-solid fa-eye"></i>
+    Visit
+    </a>
+    <small class='url'>https://${sitesArr[i].URL}</small>
+    
+    </div>
+    </td>
+    <td><button id="delete" onclick="updateSite(${i})" class="btn btn-outline-warning">Update</button></td>
+    <td><button id="delete" onclick="deleteSite(${i})" class="btn btn-outline-danger">Delete</button></td>
   </tr>`
   }
   document.querySelector("#tbody").innerHTML = siteRow;
-  // clearForm();
+
 
 }
 
 function clearForm(){
   siteName.value = '';
   siteURL.value = '';
+}
+
+
+search.addEventListener('keyup', function () {
+  let sites = JSON.parse(localStorage.getItem('sites'))
+  let afterSearch = [];
+  for (let i = 0; i < sites.length; i++) {
+    const element = sites[i];
+    if (element.name.toLowerCase().includes(this.value.toLowerCase())) {
+      afterSearch.push(element)  
+    }
+    
+  }
+  display(afterSearch)
+})
+
+
+
+function updateSite(index) {
+  console.log(sites[index]);
+  indexOfSite = index
+  siteName.value = sites[index].name;
+  siteURL.value = sites[index].URL;
+  submit.classList.add('d-none')
+  update.classList.remove('d-none')
+}
+
+update.addEventListener('click', function () {
+  replaceUpdate()
+})
+
+function replaceUpdate() {
+  let sitseAfterUpdate = JSON.parse(localStorage.getItem('sites'));
+  sitseAfterUpdate[indexOfSite].name = siteName.value;
+  sitseAfterUpdate[indexOfSite].URL = siteURL.value;
+  localStorage.setItem('sites',JSON.stringify(sitseAfterUpdate));
+  display(sitseAfterUpdate);
+  clearForm();
+  submit.classList.remove('d-none')
+  update.classList.add('d-none')
 }
 
 function deleteSite(index){

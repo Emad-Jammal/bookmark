@@ -9,13 +9,6 @@
   color: green;
 }
 
-
-
-
-
-
-
-
 body {
   background-color: #F7ECDE;
 }
@@ -85,7 +78,45 @@ table td {
   border-radius: 50%;
 }
 
-
 #close {
   cursor: pointer;
+}
+
+.search-icon {
+  left: 20px;
+  
+}
+
+#search {
+  caret-color: #0d6efd;
+}
+
+.url {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 125%;
+  transition: all .3s;
+  color: #123213;
+}
+.url::before {
+  content: '';
+  border-width: 7px;
+  border-color: #84f8c2 transparent transparent transparent;
+  border-style: dashed;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+
+.visit:hover + .url {
+  visibility: visible;
+  opacity: 1;
+  background-color: #84f8c2;
+  border-radius: 7px;
+  padding: 10px;
 }
