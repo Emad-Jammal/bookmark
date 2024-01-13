@@ -92,6 +92,7 @@ search.addEventListener('keyup', function () {
 
 
 function updateSite(index) {
+  console.log(sites);
   console.log(sites[index]);
   indexOfSite = index
   siteName.value = sites[index].name;
@@ -109,7 +110,8 @@ function replaceUpdate() {
   sitseAfterUpdate[indexOfSite].name = siteName.value;
   sitseAfterUpdate[indexOfSite].URL = siteURL.value;
   localStorage.setItem('sites',JSON.stringify(sitseAfterUpdate));
-  display(sitseAfterUpdate);
+  sites = sitseAfterUpdate
+  display(sites);
   clearForm();
   submit.classList.remove('d-none')
   update.classList.add('d-none')
