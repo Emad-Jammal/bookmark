@@ -124,7 +124,7 @@ function deleteSite(index){
 }
 
 function validateName() {
-  let regex = /^([A-Za-z]{3,})([0-9]{1,3})?$/;
+  let regex = /^([A-Za-z]{3,})([ ][A-Za-z]{3,})?([ ][0-9]{1,3})?$/;
   regex.test(siteName.value);
   if (regex.test(siteName.value) == true) {
     siteName.style.border= '2px solid green';
