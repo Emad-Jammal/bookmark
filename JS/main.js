@@ -140,7 +140,7 @@ function closeAlert() {
 }
 
 function validateURL(){
-  var regex = /^[A-Za-z0-9]{1,}\.[a-z]{2,4}$/
+  var regex = /^[A-Za-z0-9]{1,}\.([a-z]{2,}\.)?[a-z]{2,4}$/
   regex.test(siteURL.value);
   if (regex.test(siteURL.value) == true){
     siteURL.style.border = '2px solid green';
