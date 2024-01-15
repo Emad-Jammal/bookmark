@@ -127,10 +127,13 @@ function validateName() {
   let regex = /^([A-Za-z]{3,})([ ][A-Za-z]{3,})?([ ][0-9]{1,3})?$/;
   regex.test(siteName.value);
   if (regex.test(siteName.value) == true) {
-    siteName.style.border= '2px solid green';
+    siteName.classList.add('validation-true');
+    siteName.classList.remove('validation-false');
+
     return true;
   } else {
-    siteName.style.border= '2px solid red';
+    siteName.classList.remove('validation-true');
+    siteName.classList.add('validation-false');
     return false
   }
 
@@ -143,10 +146,12 @@ function validateURL(){
   var regex = /^[A-Za-z0-9]{1,}\.([a-z]{2,}\.)?[a-z]{2,4}$/
   regex.test(siteURL.value);
   if (regex.test(siteURL.value) == true){
-    siteURL.style.border = '2px solid green';
+    siteURL.classList.add('validation-true');
+    siteURL.classList.remove('validation-false');
     return true;
   }else {
-    siteURL.style.border = '2px solid red';
+    siteURL.classList.add('validation-false');
+    siteURL.classList.remove('validation-true');
     return false;
   }
 }

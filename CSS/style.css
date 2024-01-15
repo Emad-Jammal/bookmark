@@ -120,3 +120,13 @@ table td {
   border-radius: 7px;
   padding: 10px;
 }
+
+
+.validation-true {
+  border-color: rgb(65, 187, 65) !important;
+  box-shadow: 0 0 0 0.25rem rgba(1, 185, 1, 0.3) !important;
+}
+.validation-false {
+  border-color: rgb(235, 74, 74) !important;
+  box-shadow: 0 0 0 0.25rem rgba(241, 84, 84, 0.493) !important;
+}
