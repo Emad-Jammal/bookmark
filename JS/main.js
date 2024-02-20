@@ -49,7 +49,7 @@ function display(sitesArr) {
   for (var i = 0; i < sitesArr.length; i++){
     siteRow += `<tr>
     <td>${i + 1}</td>
-    <td>${sitesArr[i].newName ? sitesArr[i].newName : sitesArr[i].name}</td>
+    <td >${sitesArr[i].newName ? sitesArr[i].newName : sitesArr[i].name}</td>
     <td>
     <div class='position-relative'>
     <a href="https://${sitesArr[i].URL}" target='_blank' class="btn btn-outline-success visit">
@@ -143,7 +143,7 @@ function closeAlert() {
 }
 
 function validateURL(){
-  var regex = /^[A-Za-z0-9]{1,}([-_][A-Za-z0-9]{1,})?\.([a-z]{1,}([-_][A-Za-z0-9]{1,})?\.)?[a-z]{2,4}$/
+  var regex = /^[A-Za-z0-9]{1,}([-_][A-Za-z0-9]{1,})?\.([a-z]{1,}([-_][A-Za-z0-9]{1,})?\.)?[a-z]{2,8}$/
   regex.test(siteURL.value);
   if (regex.test(siteURL.value) == true){
     siteURL.classList.add('validation-true');
